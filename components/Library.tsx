@@ -7,6 +7,7 @@ import useUploadModal from "@/hooks/useUploadModal";
 import { Song } from "@/types";
 import MediaItem from "./MediaItem";
 import useOnPlay from "@/hooks/useOnPlay";
+import toast from "react-hot-toast";
 
 interface LibraryProps {
     songs: Song[];
@@ -24,6 +25,11 @@ const Library: React.FC<LibraryProps> =({
         if(!user) {
             return authModal.onOpen();
         }
+        
+        if (user.email !== process.env.NEXT_PUBLIC_ADMIN_EMAIL) {
+            return toast.error("Only the admin can upload songs!");
+        }
+
         return uploadModal.onOpen();
     };
     return (
@@ -50,16 +56,18 @@ const Library: React.FC<LibraryProps> =({
                         Your Library
                     </p>
                 </div>
-                <AiOutlinePlus
-                    onClick={onClick}
-                    size={20}
-                    className="
-                    text-neutral-400
-                    cursor-pointer
-                    hover:text-white
-                    transition
-                    "
-                 />
+                {user?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL && (
+                    <AiOutlinePlus
+                        onClick={onClick}
+                        size={20}
+                        className="
+                        text-neutral-400
+                        cursor-pointer
+                        hover:text-white
+                        transition
+                        "
+                     />
+                )}
             </div>
             <div className="
                 felx

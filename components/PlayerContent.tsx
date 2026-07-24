@@ -20,8 +20,8 @@ const PlayerContent: React.FC<PlayerContentProps>= ({
     songUrl
 }) => {
     const player = usePlayer();
-    const [volume, setVolume] = useState(50);
-    const [isPlaying, setIsPlaying] =  useState(false); 
+    const [volume, setVolume] = useState(1);
+    const [isPlaying, setIsPlaying] =  useState(false);
     const Icon =isPlaying? BsPauseFill : BsPlayFill;
     const VolumeIcon = volume === 0 ? HiSpeakerXMark : HiSpeakerWave;
 
@@ -128,8 +128,3 @@ const PlayerContent: React.FC<PlayerContentProps>= ({
 }
 
 export default PlayerContent;
-
-function play() {
-    throw new Error("Function not implemented.");
-}
-

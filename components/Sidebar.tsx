@@ -23,13 +23,13 @@ const Sidebar: React.FC<SidebarProps> = ( { children, songs
             icon: HiHome,
             label: 'Home',
             active: pathname !== '/search',
-            herf: '/',
+            href: '/',
         },
         {
             icon: BiSearch,
             label: 'Search',
             active: pathname === '/search',
-            herf: '/search',
+            href: '/search',
         }
 
     ], [pathname] );
@@ -58,8 +58,8 @@ const Sidebar: React.FC<SidebarProps> = ( { children, songs
                         {routes.map((item) => (
                             <SidebarItem
                                 key={item.label}
-                                href={"/search"}
-                                {...item}                          />
+                                {...item}
+                            />
 
                         ))}
 
